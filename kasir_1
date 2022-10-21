@@ -1,4 +1,7 @@
-#test
+import os
+
+os.system('CLS') 
+#########tempat menyetor variable############
 minuman = {
     '1' : [ 'Sprite', 5000 ],
     '2' : [ 'Fanta', 4000 ],
@@ -46,49 +49,48 @@ minuman = {
 pilihMenu = (input("Pilih Menu: "))
 while True:
     if pilihMenu not in minuman: 
-        print("Kode invalid, silahkan ulangi")
-        pilihMenu = (input("Pilih menu yang benar1: "))
+        print("Kode invalid, silahkan ulangi\n")
+        pilihMenu = (input("Pilih menu: "))
         continue
-        
     elif pilihMenu in minuman:
         print(minuman[pilihMenu])  
           
     jumlahBarang = int(input("Jumlah barang: "))
     hargaBarang = int(input("Insert harga: "))
     totalBarang = jumlahBarang * hargaBarang
-    print("Total harga,", totalBarang) 
     break
 
 #########input dan menghitung jumlah barang ke2############
-orderan2 = input("Apakah ada lagi? ")
+os.system('CLS') 
+
+orderan2 = input("Apakah ada lagi?\n[Y = Untuk iya, selainnya berarti tidak] ")
+os.system('CLS')
+
 if orderan2 != "y":
-    print("Ini subtotal harga minuman anda", totalBarang)
+    print("\nItem = %s * %s = %s" % (minuman[pilihMenu], jumlahBarang, totalBarang))
+    print("\nTotal harga", totalBarang)
+
+pilihMenu2 = (input("Pilih Menu untuk item ke-2: "))
+
 while orderan2 == "y":
-    pilihMenu2 = (input("Pilih Menu untuk item ke-2: "))
+
     if pilihMenu2 not in minuman:
-        print("Kode invalid, silahkan ulangi")
-        pilihMenu = (input("Pilih menu lagi, jgn salah mulu: "))
-        if pilihMenu2 not in minuman:
-            print("Salah kode, ulangi lagi")
+        print("\nKode invalid, silahkan ulangi")
+        pilihMenu2 = (input("Pilih menu lagi untuk item ke-2: "))
         continue
+
     elif pilihMenu2 in minuman:
         print(minuman[pilihMenu2])
         jumlahBarang2 = int(input("Jumlah barang: "))
         hargaBarang2 = int(input("Insert harga: "))
         totalBarang2 = jumlahBarang2 * hargaBarang2
 
-        print("Item pertama = %s, dengan harga = %s" % (minuman[pilihMenu],  hargaBarang))
-        print("Item kedua = %s, dengan harga = %s" % (minuman[pilihMenu2], hargaBarang2))
+        print("\nItem pertama = %s * %s = %s" % (minuman[pilihMenu], jumlahBarang, totalBarang))
+        print("Item kedua = %s * %s = %s\n" % (minuman[pilihMenu2], jumlahBarang2, totalBarang2))
         
         print("Total harga", totalBarang + totalBarang2)
-        print("Ini subtotal harga minuman anda", totalBarang + totalBarang2)
         break
         #########total harga barang 1 dan 2############
     
 
     #print("Item pertama = %s" %minuman[pilihMenu] )
-
-    
- 
-
-
