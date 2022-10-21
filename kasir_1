@@ -1,4 +1,5 @@
 import os
+import datetime
 
 os.system('CLS') 
 #########tempat menyetor variable############
@@ -43,14 +44,38 @@ minuman = {
     '38': [ 'Sari Wangi', 6000 ],
  
 }
-#print(minuman["1"])  
+
+#login
+currentTime = datetime.datetime.now()
+print(currentTime.strftime("%X %p"))
+print(currentTime.strftime("%x"))
+print("Selamat datang")
+print("Masukkan username dan password Anda")
+
+while True:
+    username = input("Username : ")
+    password = input("Password : ")
+    if username == "dora" and password == "buta":
+        print("Kamu berhasil login")
+        break
+    elif username != "dora" and password != "buta":
+        print("Username dan password anda salah")
+        continue
+    elif username != "dora":
+        print("Username anda salah")
+        continue
+    else:
+        print("Password anda salah")
+        continue
+
 
 #########input dan menghitung jumlah barang############
-pilihMenu = (input("Pilih Menu: "))
+itemCount = []
+
 while True:
+    pilihMenu = (input("Pilih Menu: "))
     if pilihMenu not in minuman: 
         print("Kode invalid, silahkan ulangi\n")
-        pilihMenu = (input("Pilih menu: "))
         continue
     elif pilihMenu in minuman:
         print(minuman[pilihMenu])  
@@ -58,39 +83,19 @@ while True:
     jumlahBarang = int(input("Jumlah barang: "))
     hargaBarang = int(input("Insert harga: "))
     totalBarang = jumlahBarang * hargaBarang
-    break
+    print(totalBarang)
+    itemCount.append(totalBarang)
 
-#########input dan menghitung jumlah barang ke2############
-os.system('CLS') 
-
-orderan2 = input("Apakah ada lagi?\n[Y = Untuk iya, selainnya berarti tidak] ")
-os.system('CLS')
-
-if orderan2 != "y":
-    print("\nItem = %s * %s = %s" % (minuman[pilihMenu], jumlahBarang, totalBarang))
-    print("\nTotal harga", totalBarang)
-
-pilihMenu2 = (input("Pilih Menu untuk item ke-2: "))
-
-while orderan2 == "y":
-
-    if pilihMenu2 not in minuman:
-        print("\nKode invalid, silahkan ulangi")
-        pilihMenu2 = (input("Pilih menu lagi untuk item ke-2: "))
+    pilihMenu = input("Apakah ada lagi? ")
+    if pilihMenu == "y":
         continue
-
-    elif pilihMenu2 in minuman:
-        print(minuman[pilihMenu2])
-        jumlahBarang2 = int(input("Jumlah barang: "))
-        hargaBarang2 = int(input("Insert harga: "))
-        totalBarang2 = jumlahBarang2 * hargaBarang2
-
-        print("\nItem pertama = %s * %s = %s" % (minuman[pilihMenu], jumlahBarang, totalBarang))
-        print("Item kedua = %s * %s = %s\n" % (minuman[pilihMenu2], jumlahBarang2, totalBarang2))
-        
-        print("Total harga", totalBarang + totalBarang2)
+    else:
         break
-        #########total harga barang 1 dan 2############
-    
 
-    #print("Item pertama = %s" %minuman[pilihMenu] )
+#totalSum = int(len(itemCount))
+i = 0
+for drinks in itemCount:
+    print("item ke %s" % (i+1), itemCount[i])
+    i += 1
+
+print(sum(itemCount))
