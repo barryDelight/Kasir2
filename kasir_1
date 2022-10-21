@@ -1,4 +1,5 @@
 import os
+import datetime
 
 os.system('CLS') 
 #########tempat menyetor variable############
