@@ -1,3 +1,4 @@
+#test
 minuman = {
     '1' : [ 'Sprite', 5000 ],
     '2' : [ 'Fanta', 4000 ],
