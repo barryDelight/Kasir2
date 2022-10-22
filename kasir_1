@@ -48,34 +48,39 @@ minuman = {
 #login
 currentTime = datetime.datetime.now()
 print(currentTime.strftime("%X %p"))
-print(currentTime.strftime("%x"))
+print(currentTime.strftime("%x\n"))
 print("Selamat datang")
 print("Masukkan username dan password Anda")
 
 while True:
     username = input("Username : ")
     password = input("Password : ")
+    os.system('CLS')
     if username == "dora" and password == "buta":
-        print("Kamu berhasil login")
+        print("Kamu berhasil login\n")
         break
     elif username != "dora" and password != "buta":
-        print("Username dan password anda salah")
+        print("Username dan password anda salah\n")
         continue
     elif username != "dora":
-        print("Username anda salah")
+        print("Username anda salah\n")
         continue
     else:
-        print("Password anda salah")
+        print("Password anda salah\n")
         continue
 
 
-#########input dan menghitung jumlah barang############
+#Kasir
 itemCount = []
+itemName= []
+i=0
 
 while True:
     pilihMenu = (input("Pilih Menu: "))
+    os.system('CLS')
+
     if pilihMenu not in minuman: 
-        print("Kode invalid, silahkan ulangi\n")
+        print("Kode '%s' salah, silahkan ulangi\n" % pilihMenu)
         continue
     elif pilihMenu in minuman:
         print(minuman[pilihMenu])  
@@ -83,19 +88,31 @@ while True:
     jumlahBarang = int(input("Jumlah barang: "))
     hargaBarang = int(input("Insert harga: "))
     totalBarang = jumlahBarang * hargaBarang
-    print(totalBarang)
-    itemCount.append(totalBarang)
+    print("\nItem ke %s = %s" % (i+1 ,minuman[pilihMenu]))
+    print("dengan harga =", f'{totalBarang:,}')
 
-    pilihMenu = input("Apakah ada lagi? ")
+    itemCount.append(totalBarang)
+    itemName.append(minuman[pilihMenu])
+
+    i =+ 1
+
+#nambah loop untuk mengulangi input jika ada kesalahan disini (Seperti membuat tombol untuk back atau edit kembali)
+
+    pilihMenu = input("\nApakah ada lagi? \n[Y jika iya, selain itu berarti tidak ada lagi]")
+    os.system('CLS')
     if pilihMenu == "y":
         continue
     else:
         break
 
-#totalSum = int(len(itemCount))
+print(currentTime.strftime("%X %p"))
+print(currentTime.strftime("%x\n"))
+
 i = 0
 for drinks in itemCount:
-    print("item ke %s" % (i+1), itemCount[i])
+    print("item ke %s %s, dengan harga :" % (i+1, itemName[i]) , f'{itemCount[i]:,}' )
+    
     i += 1
 
-print(sum(itemCount))
+
+print("\nTotal harga :", f'{sum(itemCount):,}' )
