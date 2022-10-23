@@ -57,16 +57,28 @@ while True:
     password = input("Password : ")
     os.system('CLS')
     if username == "dora" and password == "buta":
-        print("Kamu berhasil login\n")
+        print(currentTime.strftime("%X %p"))
+        print(currentTime.strftime("%x\n"))
+
+        print("Kamu berhasil login\nWelcome", username)
         break
     elif username != "dora" and password != "buta":
-        print("Username dan password anda salah\n")
+        print(currentTime.strftime("%X %p"))
+        print(currentTime.strftime("%x\n"))
+
+        print("!! Username dan password anda salah !!\n")
         continue
     elif username != "dora":
-        print("Username anda salah\n")
+        print(currentTime.strftime("%X %p"))
+        print(currentTime.strftime("%x\n"))
+        
+        print("!! Username anda salah !!\n")
         continue
     else:
-        print("Password anda salah\n")
+        print(currentTime.strftime("%X %p"))
+        print(currentTime.strftime("%x\n"))
+        
+        print("!! Password anda salah !!\n")
         continue
 
 
@@ -76,8 +88,8 @@ itemName= []
 i=0
 
 while True:
-    pilihMenu = (input("Pilih Menu: "))
-    os.system('CLS')
+    pilihMenu = (input("\nPilih Menu: "))
+    #os.system('CLS')
 
     if pilihMenu not in minuman: 
         print("Kode '%s' salah, silahkan ulangi\n" % pilihMenu)
@@ -86,33 +98,46 @@ while True:
         print(minuman[pilihMenu])  
           
     jumlahBarang = int(input("Jumlah barang: "))
-    hargaBarang = int(input("Insert harga: "))
+    hargaBarang = minuman[pilihMenu][1]
     totalBarang = jumlahBarang * hargaBarang
-    print("\nItem ke %s = %s" % (i+1 ,minuman[pilihMenu]))
-    print("dengan harga =", f'{totalBarang:,}')
+    print("\nItem ke %s : %s" % (i+1 ,minuman[pilihMenu]))
+    print("Dengan jumlah barang : %s" %jumlahBarang)
+    print("Dan dengan harga :", f'{totalBarang:,}')
+    
+    confirm = (input("\nKonfirmasi : 1\n[Selain dari itu adalah tidak] "))
+    #os.system('CLS')
+    if confirm == '1':
+        itemCount.append(totalBarang)
+        itemName.append(minuman[pilihMenu])
+        #print("Item ke %s %s, dengan harga :" % (i+1, itemName[i]) , f'{itemCount[i]:,}' )
+        i += 1
 
-    itemCount.append(totalBarang)
-    itemName.append(minuman[pilihMenu])
-
-    i =+ 1
+    elif confirm != '1':
+        continue
+    
 
 #nambah loop untuk mengulangi input jika ada kesalahan disini (Seperti membuat tombol untuk back atau edit kembali)
-
-    pilihMenu = input("\nApakah ada lagi? \n[Y jika iya, selain itu berarti tidak ada lagi]")
-    os.system('CLS')
-    if pilihMenu == "y":
+    another = input("\nMenginput barang lagi : 1\nHapus list : 2\n[Selain dari itu berarti tutup] ")
+    #os.system('CLS')
+    if another == "1":
         continue
+    elif another == '2':
+        removed = int(input("Menghapus item ke "))
+        removeInput = itemName.pop((removed-1))
+        print("Menghapus list ke ", removed)
     else:
         break
 
 print(currentTime.strftime("%X %p"))
-print(currentTime.strftime("%x\n"))
+print(currentTime.strftime("%x"))
 
 i = 0
 for drinks in itemCount:
-    print("item ke %s %s, dengan harga :" % (i+1, itemName[i]) , f'{itemCount[i]:,}' )
+    print("\nItem ke %s %s" % (i+1, itemName[i]))
+    print("Dengan jumlah barang : %s" %jumlahBarang)
+    print("Dan dengan harga :", f'{itemCount[i]:,}')
     
     i += 1
 
-
 print("\nTotal harga :", f'{sum(itemCount):,}' )
+print("!! Terimakasih !!\n\n")
