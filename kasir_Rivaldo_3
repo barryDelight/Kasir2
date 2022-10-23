@@ -85,11 +85,12 @@ while True:
 #Kasir
 itemCount = []
 itemName= []
+itemQuantity = []
 i=0
 
 while True:
     pilihMenu = (input("\nPilih Menu: "))
-    #os.system('CLS')
+    os.system('CLS')
 
     if pilihMenu not in minuman: 
         print("Kode '%s' salah, silahkan ulangi\n" % pilihMenu)
@@ -105,11 +106,11 @@ while True:
     print("Dan dengan harga :", f'{totalBarang:,}')
     
     confirm = (input("\nKonfirmasi : 1\n[Selain dari itu adalah tidak] "))
-    #os.system('CLS')
+    os.system('CLS')
     if confirm == '1':
+        itemQuantity.append(jumlahBarang)
         itemCount.append(totalBarang)
         itemName.append(minuman[pilihMenu])
-        #print("Item ke %s %s, dengan harga :" % (i+1, itemName[i]) , f'{itemCount[i]:,}' )
         i += 1
 
     elif confirm != '1':
@@ -118,26 +119,35 @@ while True:
 
 #nambah loop untuk mengulangi input jika ada kesalahan disini (Seperti membuat tombol untuk back atau edit kembali)
     another = input("\nMenginput barang lagi : 1\nHapus list : 2\n[Selain dari itu berarti tutup] ")
-    #os.system('CLS')
+    os.system('CLS')
     if another == "1":
         continue
     elif another == '2':
         removed = int(input("Menghapus item ke "))
         removeInput = itemName.pop((removed-1))
-        print("Menghapus list ke ", removed)
+        print("Menghapus list ke", removed)
+    
+        again = input("Apakah ada lagi?\n[Y jika iya, Selain dari itu ebrarti tidak] ")
+        if again == 'y':
+            continue
+        else:
+            break
     else:
         break
 
+os.system('CLS')
 print(currentTime.strftime("%X %p"))
 print(currentTime.strftime("%x"))
 
+
+print("=====================================================")
+
 i = 0
-for drinks in itemCount:
-    print("\nItem ke %s %s" % (i+1, itemName[i]))
-    print("Dengan jumlah barang : %s" %jumlahBarang)
-    print("Dan dengan harga :", f'{itemCount[i]:,}')
-    
+for drinks in itemName:
+    print("{:25}".format(itemName[i][0]), itemQuantity[i], "{:>25}".format(f'{itemCount[i]:,}'))
     i += 1
 
-print("\nTotal harga :", f'{sum(itemCount):,}' )
-print("!! Terimakasih !!\n\n")
+print("=====================================================")
+print("{:25}".format("Total Item"), f'{sum(itemQuantity)}', "{:>25}".format(f'{sum(itemCount):,}'))
+tk = "Terimakasih"
+print(f'{tk:=^53}')
