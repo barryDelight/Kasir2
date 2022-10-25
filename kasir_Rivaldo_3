@@ -97,14 +97,18 @@ while True:
         continue
     elif pilihMenu in minuman:
         print(minuman[pilihMenu])  
-          
-    jumlahBarang = int(input("Jumlah barang: "))
-    hargaBarang = minuman[pilihMenu][1]
-    totalBarang = jumlahBarang * hargaBarang
-    print("\nItem ke %s : %s" % (i+1 ,minuman[pilihMenu]))
-    print("Dengan jumlah barang : %s" %jumlahBarang)
-    print("Dan dengan harga :", f'{totalBarang:,}')
     
+    jumlahBarang = int(input("Jumlah barang: "))
+    if jumlahBarang == 0:
+        print("Jumlah barang tidak valid")
+        continue
+    else:
+        hargaBarang = minuman[pilihMenu][1]
+        totalBarang = jumlahBarang * hargaBarang
+        print("\nItem ke %s : %s" % (i+1 ,minuman[pilihMenu]))
+        print("Dengan jumlah barang : %s" %jumlahBarang)
+        print("Dan dengan harga :", f'{totalBarang:,}')
+
     confirm = (input("\nKonfirmasi : 1\n[Selain dari itu adalah tidak] "))
     os.system('CLS')
     if confirm == '1':
@@ -125,9 +129,11 @@ while True:
     elif another == '2':
         removed = int(input("Menghapus item ke "))
         removeInput = itemName.pop((removed-1))
+        removeInput = itemQuantity.pop((removed-1))
+        removeInput = itemCount.pop((removed-1))
         print("Menghapus list ke", removed)
     
-        again = input("Apakah ada lagi?\n[Y jika iya, Selain dari itu ebrarti tidak] ")
+        again = input("Apakah ada lagi?\n[Y jika iya, Selain dari itu berarti tidak] ")
         if again == 'y':
             continue
         else:
